@@ -70,14 +70,14 @@ will be in the middle of the new layout."
 (defun mrc/directory-join (&rest path-elements)
   "Join together a set of path element strings with the platform path separator."
   (reduce '(lambda (directory file)
-	     (concat (file-name-as-directory directory) file))
-	  path-elements))
+             (concat (file-name-as-directory directory) file))
+          path-elements))
 
 (defun mrc/relative-directory-join (&rest path-elements)
   "Joins together path elements, relative to the current script's path."
   (apply #'mrc/directory-join
-	 (cons (file-name-directory (or load-file-name buffer-file-name))
-	       path-elements)))
+         (cons (file-name-directory (or load-file-name buffer-file-name))
+               path-elements)))
 
 ;;----------------------------------------------------------------------
 ;; Configuration and Minor Modes
@@ -104,6 +104,9 @@ will be in the middle of the new layout."
 ;; display column numbers
 (column-number-mode)
 
+;; Tabs
+(setq-default indent-tabs-mode nil)
+
 ;; make the mouse work in the terminal
 (when terminal-p
   (require 'mouse)
@@ -125,13 +128,11 @@ will be in the middle of the new layout."
 ;; Third party modes
 
 (add-to-list 'load-path
-	     (mrc/relative-directory-join "third_party" "find-things-fast"))
+             (mrc/relative-directory-join "third_party" "find-things-fast"))
 (require 'find-things-fast)
-(add-hook 'emacs-lisp-mode-hook
-          (lambda () (ftf-add-filetypes '("*.el" "*.elisp"))))
 
 (add-to-list 'load-path
-	     (mrc/relative-directory-join "third_party" "undo-tree"))
+             (mrc/relative-directory-join "third_party" "undo-tree"))
 (require 'undo-tree)
 (global-undo-tree-mode)
 
@@ -145,7 +146,7 @@ will be in the middle of the new layout."
 (defun mrc/c-mode-common-hook ()
   (with-ftf-project-root
    (setq ff-always-try-to-create nil
-	 ff-search-directories (list "." default-directory))))
+         ff-search-directories (list "." default-directory))))
 (add-hook 'c-mode-common-hook 'mrc/c-mode-common-hook)
 
 ;;----------------------------------------------------------------------

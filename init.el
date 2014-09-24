@@ -131,6 +131,10 @@ will be in the middle of the new layout."
 (add-hook 'emacs-lisp-mode-hook
           (lambda () (ftf-add-filetypes '("*.el" "*.elisp"))))
 
+(add-to-list 'load-path
+	     (mrc/relative-directory-join "third_party" "undo-tree"))
+(require 'undo-tree)
+(global-undo-tree-mode)
 
 ;;----------------------------------------------------------------------
 ;; key bindings

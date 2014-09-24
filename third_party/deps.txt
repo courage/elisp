@@ -1,0 +1,11 @@
+Origins of the code checked in under third_party. Include the source
+control revision if available.
+
+* Find Things Fast
+https://github.com/eglaysher/find-things-fast
+ea6b92335aefce66cb5dddda78ceefb27689a7e1
+
+* Undo Tree
+http://www.emacswiki.org/emacs/UndoTree
+http://www.dr-qubit.org/download.php?file=undo-tree/undo-tree.el
+

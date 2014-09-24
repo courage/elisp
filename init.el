@@ -136,12 +136,27 @@ will be in the middle of the new layout."
 (global-undo-tree-mode)
 
 ;;----------------------------------------------------------------------
+;; Mode hooks
+
+(defun mrc/emacs-lisp-mode-hook ()
+  (ftf-add-filetypes '("*.el" "*.elisp")))
+(add-hook 'emacs-lisp-mode-hook 'mrc/emacs-lisp-mode-hook)
+
+(defun mrc/c-mode-common-hook ()
+  (with-ftf-project-root
+   (setq ff-always-try-to-create nil
+	 ff-search-directories (list "." default-directory))))
+(add-hook 'c-mode-common-hook 'mrc/c-mode-common-hook)
+
+;;----------------------------------------------------------------------
 ;; key bindings
 
 (global-set-key (kbd "C-c 3") 'split-into-two-columns-and-cycle)
 (global-set-key (kbd "C-c C-3") 'split-into-two-columns-and-follow)
 (global-set-key (kbd "C-c 4") 'split-into-three-columns-and-cycle)
 (global-set-key (kbd "C-c C-4") 'split-into-three-columns-and-follow)
+
+(global-set-key (kbd "C-c o") 'ff-find-related-file)
 
 (global-set-key (kbd "C-c p g") 'ftf-grepsource)
 (global-set-key (kbd "C-c p f") 'ftf-find-file)

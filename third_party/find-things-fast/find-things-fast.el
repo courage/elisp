@@ -121,7 +121,8 @@ elements of list types to the list"
   (let ((path default-directory)
         (return-path nil))
     (while path
-      (cond ((string-equal path "/")
+      (cond ((or (string-equal path "/")
+		 (string-equal path (parent-dir path)))
              (setq return-path nil
                    path nil))
             ((dir-has-project-file path)

@@ -123,7 +123,6 @@ will be in the middle of the new layout."
 
 ;;----------------------------------------------------------------------
 ;; Third party modes
-;;       (third-party-directory (concat elisp-directory "third_party"))
 
 (add-to-list 'load-path
 	     (mrc/relative-directory-join "third_party" "find-things-fast"))

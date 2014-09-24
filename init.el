@@ -63,6 +63,23 @@ will be in the middle of the new layout."
   (follow-mode 1))
 
 ;;----------------------------------------------------------------------
+;; Utility functions
+
+(require 'cl)
+
+(defun mrc/directory-join (&rest path-elements)
+  "Join together a set of path element strings with the platform path separator."
+  (reduce '(lambda (directory file)
+	     (concat (file-name-as-directory directory) file))
+	  path-elements))
+
+(defun mrc/relative-directory-join (&rest path-elements)
+  "Joins together path elements, relative to the current script's path."
+  (apply #'mrc/directory-join
+	 (cons (file-name-directory (or load-file-name buffer-file-name))
+	       path-elements)))
+
+;;----------------------------------------------------------------------
 ;; Configuration and Minor Modes
 
 ;; Remove annoying space consumers
@@ -105,12 +122,26 @@ will be in the middle of the new layout."
 (icomplete-mode 1)
 
 ;;----------------------------------------------------------------------
+;; Third party modes
+;;       (third-party-directory (concat elisp-directory "third_party"))
+
+(add-to-list 'load-path
+	     (mrc/relative-directory-join "third_party" "find-things-fast"))
+(require 'find-things-fast)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda () (ftf-add-filetypes '("*.el" "*.elisp"))))
+
+
+;;----------------------------------------------------------------------
 ;; key bindings
 
 (global-set-key (kbd "C-c 3") 'split-into-two-columns-and-cycle)
 (global-set-key (kbd "C-c C-3") 'split-into-two-columns-and-follow)
 (global-set-key (kbd "C-c 4") 'split-into-three-columns-and-cycle)
 (global-set-key (kbd "C-c C-4") 'split-into-three-columns-and-follow)
+
+(global-set-key (kbd "C-c p g") 'ftf-grepsource)
+(global-set-key (kbd "C-c p f") 'ftf-find-file)
 
 ;;----------------------------------------------------------------------
 ;; Custom variables (don't make more than one of these).

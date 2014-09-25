@@ -132,6 +132,10 @@ will be in the middle of the new layout."
 (require 'find-things-fast)
 
 (add-to-list 'load-path
+             (mrc/relative-directory-join "third_party" "go-mode"))
+(require 'go-mode)
+
+(add-to-list 'load-path
              (mrc/relative-directory-join "third_party" "undo-tree"))
 (require 'undo-tree)
 (global-undo-tree-mode)
@@ -139,15 +143,22 @@ will be in the middle of the new layout."
 ;;----------------------------------------------------------------------
 ;; Mode hooks
 
-(defun mrc/emacs-lisp-mode-hook ()
-  (ftf-add-filetypes '("*.el" "*.elisp")))
-(add-hook 'emacs-lisp-mode-hook 'mrc/emacs-lisp-mode-hook)
-
 (defun mrc/c-mode-common-hook ()
   (with-ftf-project-root
    (setq ff-always-try-to-create nil
          ff-search-directories (list "." default-directory))))
 (add-hook 'c-mode-common-hook 'mrc/c-mode-common-hook)
+
+(defun mrc/emacs-lisp-mode-hook ()
+  (ftf-add-filetypes '("*.el" "*.elisp")))
+(add-hook 'emacs-lisp-mode-hook 'mrc/emacs-lisp-mode-hook)
+
+(defun mrc/go-mode-hook ()
+  (setq tab-width 4
+        indent-tabs-mode t)
+  (if (executable-find "go")
+      (add-hook 'before-save-hook 'gofmt-before-save)))
+(add-hook 'go-mode-hook 'mrc/go-mode-hook)
 
 ;;----------------------------------------------------------------------
 ;; key bindings
@@ -174,3 +185,10 @@ will be in the middle of the new layout."
   '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
   '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
   '(cr-flymake-ninja-build-file "out/Debug/build.ninja"))
+
+;;----------------------------------------------------------------------
+;; Local machine specific set up
+
+(let ((local-el (mrc/relative-directory-join "local" "local.el")))
+  (if (file-readable-p local-el)
+      (load-file local-el)))

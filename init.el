@@ -162,6 +162,11 @@ will be in the middle of the new layout."
 (global-set-key (kbd "C-c p g") 'ftf-grepsource)
 (global-set-key (kbd "C-c p f") 'ftf-find-file)
 
+(global-set-key (kbd "<M-s-left>") 'windmove-left)
+(global-set-key (kbd "<M-s-right>") 'windmove-right)
+(global-set-key (kbd "<M-s-up>") 'windmove-up)
+(global-set-key (kbd "<M-s-down>") 'windmove-down)
+
 ;;----------------------------------------------------------------------
 ;; Custom variables (don't make more than one of these).
 

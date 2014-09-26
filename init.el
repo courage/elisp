@@ -67,6 +67,9 @@
 (setq ido-use-filename-at-point 'guess)
 (icomplete-mode 1)
 
+;; org-mode
+(setq org-todo-keywords '("TODO" "STARTED" "WAITING" "DONE"))
+
 ;;----------------------------------------------------------------------
 ;; Third party modes
 
@@ -104,6 +107,15 @@
 (add-hook 'go-mode-hook 'mrc/go-mode-hook)
 
 ;;----------------------------------------------------------------------
+;; shortcuts to common stuff
+(defun find-organizer ()
+  (interactive)
+  (find-file "~/notes/todo.org"))
+(defun find-init ()
+  (interactive)
+  (find-file "~/elisp/init.el"))
+
+;;----------------------------------------------------------------------
 ;; key bindings
 
 (global-set-key (kbd "C-c 3") 'split-into-two-columns-and-cycle)
@@ -120,6 +132,9 @@
 (global-set-key (kbd "<M-s-right>") 'windmove-right)
 (global-set-key (kbd "<M-s-up>") 'windmove-up)
 (global-set-key (kbd "<M-s-down>") 'windmove-down)
+
+(global-set-key (kbd "<f11>") 'find-init)
+(global-set-key (kbd "<f12>") 'find-organizer)
 
 ;;----------------------------------------------------------------------
 ;; Custom variables (don't make more than one of these).

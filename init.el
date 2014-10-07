@@ -108,12 +108,15 @@
 
 ;;----------------------------------------------------------------------
 ;; shortcuts to common stuff
-(defun find-organizer ()
-  (interactive)
-  (find-file "~/notes/todo.org"))
-(defun find-init ()
+(defun mrc/find-init ()
   (interactive)
   (find-file "~/elisp/init.el"))
+(defun mrc/find-notes ()
+  (interactive)
+  (find-file "~/notes/notes.org"))
+(defun mrc/find-organizer ()
+  (interactive)
+  (find-file "~/notes/todo.org"))
 
 ;;----------------------------------------------------------------------
 ;; key bindings
@@ -133,8 +136,10 @@
 (global-set-key (kbd "<M-s-up>") 'windmove-up)
 (global-set-key (kbd "<M-s-down>") 'windmove-down)
 
-(global-set-key (kbd "<f11>") 'find-init)
-(global-set-key (kbd "<f12>") 'find-organizer)
+(global-set-key (kbd "S-<f12>") 'mrc/find-notes)
+
+(global-set-key (kbd "<f11>") 'mrc/find-init)
+(global-set-key (kbd "<f12>") 'mrc/find-organizer)
 
 ;;----------------------------------------------------------------------
 ;; Custom variables (don't make more than one of these).

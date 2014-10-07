@@ -155,3 +155,6 @@
 (let ((local-el (mrc/relative-directory-join "local" "local.el")))
   (if (file-readable-p local-el)
       (load-file local-el)))
+
+(message "Init to win it.")
+

@@ -9,6 +9,10 @@ ea6b92335aefce66cb5dddda78ceefb27689a7e1
 https://github.com/dominikh/go-mode.el
 3300479816562a3d30fba184a3b5de6eefbdbf62
 
+* Scala Mode
+https://github.com/hvesalai/scala-mode2
+360b5ba27aeca69e72109515b6c40b2f7972cc8f
+
 * Undo Tree
 http://www.emacswiki.org/emacs/UndoTree
 http://www.dr-qubit.org/download.php?file=undo-tree/undo-tree.el

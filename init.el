@@ -82,6 +82,10 @@
 (require 'go-mode)
 
 (add-to-list 'load-path
+             (mrc/relative-directory-join "third_party" "scala-mode2"))
+(require 'scala-mode2)
+
+(add-to-list 'load-path
              (mrc/relative-directory-join "third_party" "undo-tree"))
 (require 'undo-tree)
 (global-undo-tree-mode)
